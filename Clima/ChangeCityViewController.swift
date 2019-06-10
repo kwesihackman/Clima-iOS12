@@ -10,12 +10,15 @@ import UIKit
 
 
 //Write the protocol declaration here:
-
+protocol ChangeCityDelegate {
+    func userEnterANewCityName(city: String)
+}
 
 
 class ChangeCityViewController: UIViewController {
     
     //Declare the delegate variable here:
+    var delegate: ChangeCityDelegate?
 
     
     //This is the pre-linked IBOutlets to the text field:
@@ -28,6 +31,10 @@ class ChangeCityViewController: UIViewController {
         
         
         //1 Get the city name the user entered in the text field
+        if let cityName = changeCityTextField.text{
+            delegate?.userEnterANewCityName(city: cityName)
+            self.dismiss(animated: true, completion: nil)
+        }
         
         
         //2 If we have a delegate set, call the method userEnteredANewCityName
